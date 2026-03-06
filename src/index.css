@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-dark font-sans antialiased;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+  }
+
+  .btn-magnetic {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .btn-magnetic:hover {
+    transform: scale(1.03);
+  }
+
+  .link-lift {
+    transition: transform 0.3s ease;
+  }
+  .link-lift:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Custom scrollbar for raw brutalist feel */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F5F3EE; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #111111; 
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E63B2E; 
+  }
+}
