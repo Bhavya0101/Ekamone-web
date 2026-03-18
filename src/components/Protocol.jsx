@@ -66,20 +66,20 @@ function PulsingWaveform() {
 const steps = [
   {
     num: "01",
-    title: "Diagnose Leverage",
-    desc: "Analyze workflows and identify the single point of failure where AI integration drives outsized impact.",
+    title: "Audit Sequences",
+    desc: "We dissect your existing outreach: sequences, targeting, copy, and timing. We find the single leverage point where your pipeline is leaking.",
     Graphic: GeometricMotif
   },
   {
     num: "02",
-    title: "Deploy System",
-    desc: "Replace endless theory with functional prototypes. We engineer and ship precise automation tools.",
+    title: "Deploy Outreach System",
+    desc: "We build and ship an AI-powered outbound system into your workflow. Not a slide deck — a working engine that sends, follows up, and books calls.",
     Graphic: ScanningLaser
   },
   {
     num: "03",
-    title: "Iterate Impact",
-    desc: "Every system is measured against business outcomes. We refine until +ROI is undeniable.",
+    title: "Scale Pipeline",
+    desc: "We measure against booked calls and qualified pipeline. Continuous iteration until your outreach runs without founder-dependency.",
     Graphic: PulsingWaveform
   }
 ];
@@ -118,7 +118,7 @@ export default function Protocol() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-16">
         <h2 className="font-mono text-sm uppercase tracking-widest text-accent mb-4">The Protocol</h2>
         <p className="font-sans font-bold text-4xl md:text-5xl max-w-2xl leading-tight text-dark">
-          Our three-step methodology.
+          How we ship your outreach system.
         </p>
       </div>
 
@@ -129,15 +129,15 @@ export default function Protocol() {
             ref={el => cardsRef.current[i] = el}
             className="card-stack top-0 w-full h-[100dvh] flex items-center justify-center sticky px-6 md:px-12 lg:px-24 py-12"
           >
-            <div className="w-full max-w-5xl h-[80vh] bg-dark text-primary rounded-[2rem] border border-primary/10 p-8 md:p-16 flex flex-col md:flex-row shadow-[0_-10px_40px_rgba(0,0,0,0.3)] gap-12 md:gap-24 items-center justify-between">
+            <div className="w-full max-w-5xl h-[80vh] bg-primary text-white rounded-[2rem] border border-white/10 p-8 md:p-16 flex flex-col md:flex-row shadow-[0_-10px_40px_rgba(0,0,0,0.3)] gap-12 md:gap-24 items-center justify-between">
               
               <div className="flex-1 flex flex-col justify-center max-w-lg relative z-10 w-full">
-                <div className="font-mono text-5xl md:text-7xl opacity-20 font-bold mb-6 block border-b border-primary/20 pb-4">{step.num}</div>
+                <div className="font-mono text-5xl md:text-7xl opacity-20 font-bold mb-6 block border-b border-white/20 pb-4">{step.num}</div>
                 <h3 className="font-sans text-4xl md:text-6xl font-bold tracking-tight mb-6">{step.title}</h3>
-                <p className="font-mono text-lg text-primary/70 leading-relaxed">{step.desc}</p>
+                <p className="font-mono text-lg text-white/60 leading-relaxed">{step.desc}</p>
               </div>
 
-              <div className="hidden md:flex flex-1 w-full max-w-md aspect-square rounded-2xl bg-dark/50 border border-primary/5 p-12 items-center justify-center">
+              <div className="hidden md:flex flex-1 w-full max-w-md aspect-square rounded-2xl bg-white/5 border border-white/5 p-12 items-center justify-center">
                 <step.Graphic />
               </div>
             </div>

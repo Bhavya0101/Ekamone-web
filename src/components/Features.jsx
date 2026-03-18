@@ -6,9 +6,9 @@ import gsap from 'gsap';
 // --- Card 1: Diagnostic Shuffler --- //
 function DiagnosticShuffler() {
   const [cards, setCards] = useState([
-    { id: 1, title: 'Layer 1: Noise', value: 'Removing complexity' },
-    { id: 2, title: 'Layer 2: Signal', value: 'Finding leverage' },
-    { id: 3, title: 'Layer 3: Target', value: 'First Principles' }
+    { id: 1, title: 'Step 1: Audit', value: 'Analyzing Sequences' },
+    { id: 2, title: 'Step 2: Map', value: 'Identifying Leverage' },
+    { id: 3, title: 'Step 3: Solve', value: 'System Deployment' }
   ]);
   const containerRef = useRef(null);
 
@@ -32,14 +32,14 @@ function DiagnosticShuffler() {
         { y: 0, scale: 1, duration: 0.6, stagger: 0.05, ease: 'back.out(1.5)' }
       );
     }, containerRef);
-    return () => ctx.rereverse && ctx.revert();
+    return () => ctx.revert();
   }, [cards]);
 
   return (
     <div className="bg-primary/5 border border-dark/10 rounded-[2rem] p-8 shadow-sm flex flex-col h-[400px]">
       <div className="mb-6">
-        <h3 className="font-sans font-bold text-xl mb-2">Clarity Through<br/>First Principles</h3>
-        <p className="font-mono text-sm text-dark/70">Finding the single leverage point</p>
+        <h3 className="font-sans font-bold text-xl mb-2">Leverage<br/>Diagnostics</h3>
+        <p className="font-mono text-sm text-dark/70">Identifying points of failure in outreach</p>
       </div>
       
       <div ref={containerRef} className="relative flex-1 flex flex-col items-center justify-center mt-4">
@@ -48,7 +48,7 @@ function DiagnosticShuffler() {
             key={c.id}
             className={clsx(
               "shuffler-card absolute w-full p-4 rounded-xl border transition-all duration-700",
-              i === 0 ? "bg-dark text-primary z-30 translate-y-0 scale-100 shadow-xl border-dark" :
+              i === 0 ? "bg-primary text-white z-30 translate-y-0 scale-100 shadow-xl border-primary" :
               i === 1 ? "bg-white text-dark z-20 -translate-y-4 scale-95 shadow-md border-dark/5 opacity-80" :
               "bg-background/80 text-dark z-10 -translate-y-8 scale-90 border-dark/5 opacity-40"
             )}
@@ -69,7 +69,7 @@ function DiagnosticShuffler() {
 // --- Card 2: Telemetry Typewriter --- //
 function TelemetryTypewriter() {
   const [text, setText] = useState('');
-  const fullText = "deploy_ai_system()\\n> Resolving dependencies...\\n> Execution and iteration create value.\\n> System live: NO ENDLESS STRATEGY.\\n> Status: SHIPPED.\\n_";
+  const fullText = "outreach_init()\\n> Scanning sequences...\\n> Inefficiency: manual follow-ups\\n> Deploying AI outreach engine...\\n> Status: BOOKING CALLS.\\n_";
   
   useEffect(() => {
     let current = '';
@@ -91,7 +91,7 @@ function TelemetryTypewriter() {
     <div className="bg-primary/5 border border-dark/10 rounded-[2rem] p-8 shadow-sm flex flex-col h-[400px]">
       <div className="mb-6 flex justify-between items-start">
         <div>
-          <h3 className="font-sans font-bold text-xl mb-2">Ship Real<br/>Systems</h3>
+          <h3 className="font-sans font-bold text-xl mb-2">Live Outreach<br/>Feed</h3>
           <p className="font-mono text-sm text-dark/70 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
             Live Feed
@@ -99,11 +99,11 @@ function TelemetryTypewriter() {
         </div>
         <Terminal className="text-dark/40" />
       </div>
-      <div className="flex-1 bg-dark text-primary rounded-xl p-6 overflow-hidden">
-        <pre className="font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap">
+      <div className="flex-1 bg-primary text-white rounded-xl p-6 overflow-hidden">
+        <pre className="font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap break-all">
           {text.split('\\n').map((line, idx) => (
             <span key={idx} className="block mb-2">
-              {line.includes('SHIPPED') ? <span className="text-accent">{line}</span> : line}
+              {line.includes('BOOKING CALLS') ? <span className="text-accent">{line}</span> : line}
             </span>
           ))}
         </pre>
@@ -168,8 +168,8 @@ function CursorProtocolScheduler() {
     <div className="bg-primary/5 border border-dark/10 rounded-[2rem] p-8 shadow-sm flex flex-col h-[400px]">
       <div className="mb-6 flex justify-between items-start">
         <div>
-          <h3 className="font-sans font-bold text-xl mb-2">Business<br/>Impact First</h3>
-          <p className="font-mono text-sm text-dark/70">Moving outcomes, not sliders</p>
+          <h3 className="font-sans font-bold text-xl mb-2">Pipeline<br/>Deployment</h3>
+          <p className="font-mono text-sm text-dark/70">Founder-led to system-led</p>
         </div>
         <Database className="text-dark/40" />
       </div>
@@ -181,7 +181,7 @@ function CursorProtocolScheduler() {
               key={i} 
               className={clsx(
                 "aspect-square rounded text-center text-xs font-mono flex items-center justify-center transition-colors duration-300",
-                activeDay === i ? "bg-accent text-white" : "bg-primary/30 text-dark/50"
+                activeDay === i ? "bg-accent text-primary" : "bg-dark/5 text-dark/50"
               )}
             >
               {d}
@@ -193,8 +193,8 @@ function CursorProtocolScheduler() {
         </div>
         
         <div className="flex justify-between items-center bg-primary/20 p-3 rounded-lg">
-          <span className="font-mono text-xs font-bold text-dark/60">OUTCOME: +24% ROI</span>
-          <div className="save-btn bg-dark text-white text-[10px] px-3 py-1.5 rounded uppercase font-bold tracking-wider">Deploy</div>
+          <span className="font-mono text-xs font-bold text-dark/60">STATUS: CALLS BOOKED</span>
+          <div className="save-btn bg-primary text-white text-[10px] px-3 py-1.5 rounded uppercase font-bold tracking-wider">Scale</div>
         </div>
       </div>
     </div>
@@ -230,8 +230,8 @@ export default function Features() {
         <div className="mb-16 feature-stagger">
           <h2 className="font-mono text-sm uppercase tracking-widest text-accent mb-4">Functional Artifacts</h2>
           <p className="font-sans font-bold text-4xl md:text-5xl max-w-2xl leading-tight text-dark">
-            We don't provide theories. <br/>
-            We ship scalable <span className="font-drama italic text-dark">Systems.</span>
+            Your outbound, rebuilt from <br/>
+            <span className="font-drama italic text-dark">first principles.</span>
           </p>
         </div>
 

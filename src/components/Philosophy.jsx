@@ -42,21 +42,21 @@ export default function Philosophy() {
   }, []);
 
   return (
-    <section id="philosophy" ref={textRef} className="relative w-full py-40 px-6 md:px-12 lg:px-24 bg-dark overflow-hidden z-20">
+    <section id="philosophy" ref={textRef} className="relative w-full py-40 px-6 md:px-12 lg:px-24 bg-primary overflow-hidden z-20">
       <div className="absolute inset-0 z-0">
         <img 
           src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=2600&auto=format&fit=crop" 
-          alt="Raw materials texture" 
+          alt="Architectural shadows texture" 
           className="parallax-bg w-full h-[130%] object-cover opacity-10 mix-blend-overlay -top-[15%]"
         />
-        <div className="absolute inset-0 bg-dark/70"></div>
+        <div className="absolute inset-0 bg-primary/70"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col gap-12 text-primary">
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col gap-12 text-white">
         <div className="phil-reveal opacity-0">
-          <p className="text-xl md:text-3xl font-sans font-medium text-primary/60 max-w-2xl leading-snug">
-            Most consultancies focus on: <br/>
-            <span className="opacity-70">endless strategy without deployment.</span>
+          <p className="text-xl md:text-3xl font-sans font-medium text-white/50 max-w-2xl leading-snug">
+            Most recruiting agencies focus on: <br/>
+            <span className="opacity-70">high-volume spray-and-pray and founder-led manual outreach.</span>
           </p>
         </div>
         
@@ -64,7 +64,7 @@ export default function Philosophy() {
           <p className="text-4xl md:text-7xl lg:text-8xl font-sans font-bold tracking-tight max-w-5xl">
             We focus on: <br/>
             <span className="font-drama italic text-accent tracking-normal leading-none block md:inline mt-4 md:mt-0">
-              Execution.
+              Outbound Systems.
             </span>
           </p>
         </div>

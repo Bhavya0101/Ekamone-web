@@ -7,15 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#E8E4DD',
-        accent: '#E63B2E',
-        background: '#F5F3EE',
-        dark: '#111111',
+        primary: '#0F0E0C', // Warm Rich Black (Espresso)
+        accent: '#C9A84C',  // Champagne Gold
+        background: '#FAF8F5', // Ivory
+        dark: '#2A2A35',    // Slate
       },
       fontFamily: {
-        sans: ['"Space Grotesk"', 'sans-serif'],
-        drama: ['"DM Serif Display"', 'serif'],
-        mono: ['"Space Mono"', 'monospace'],
+        sans: ['"Inter"', 'sans-serif'],
+        drama: ['"Playfair Display"', 'serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
     },
   },
