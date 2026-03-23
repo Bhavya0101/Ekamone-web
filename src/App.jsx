@@ -1,28 +1,37 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Philosophy from './components/Philosophy';
+import SystemsCapability from './components/SystemsCapability';
 import Protocol from './components/Protocol';
-import Testimonials from './components/Testimonials';
+import Diagnostics from './components/Diagnostics';
+import Engagement from './components/Engagement';
 import Footer from './components/Footer';
 
-// Register GSAP plugins globally once
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  useEffect(() => {
+    const ctx = gsap.context(() => {});
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className="w-full relative bg-dark">
+    <div className="bg-background text-textDark font-sans relative">
       <Navbar />
       <Hero />
       <Features />
       <Philosophy />
+      <SystemsCapability />
       <Protocol />
-      <Testimonials />
+      <Diagnostics />
+      <Engagement />
       <Footer />
-    </main>
+    </div>
   );
 }
 

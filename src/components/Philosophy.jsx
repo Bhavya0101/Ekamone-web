@@ -1,73 +1,48 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Philosophy() {
-  const textRef = useRef(null);
+  const container = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const lines = gsap.utils.toArray('.phil-reveal');
-      lines.forEach((line, i) => {
-        gsap.fromTo(line,
-          { y: 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: line,
-              start: 'top 85%',
-            }
+      gsap.fromTo('.phil-anim', 
+        { y: 50, opacity: 0 },
+        { 
+          y: 0, opacity: 1, duration: 1, 
+          stagger: 0.2, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 70%',
           }
-        );
-      });
-      
-      gsap.to('.parallax-bg', {
-        yPercent: 30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
         }
-      });
-    }, textRef);
-    
+      );
+    }, container);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="philosophy" ref={textRef} className="relative w-full py-40 px-6 md:px-12 lg:px-24 bg-primary overflow-hidden z-20">
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=2600&auto=format&fit=crop" 
-          alt="Architectural shadows texture" 
-          className="parallax-bg w-full h-[130%] object-cover opacity-10 mix-blend-overlay -top-[15%]"
-        />
-        <div className="absolute inset-0 bg-primary/70"></div>
+    <section id="philosophy" ref={container} className="relative py-32 lg:py-48 px-6 lg:px-24 bg-primary text-white overflow-hidden w-full flex items-center justify-center">
+      {/* Parallax Organic Texture - low opacity background */}
+      <div 
+        className="absolute inset-0 z-0 bg-center bg-cover bg-fixed opacity-20 filter grayscale blend-luminosity"
+        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1550684376-efcbd6e3f031?auto=format&fit=crop&q=80&w=2600&ixlib=rb-4.0.3")' }}
+      >
+        <div className="absolute inset-0 bg-primary/80"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col gap-12 text-white">
-        <div className="phil-reveal opacity-0">
-          <p className="text-xl md:text-3xl font-sans font-medium text-white/50 max-w-2xl leading-snug">
-            Most recruiting agencies focus on: <br/>
-            <span className="opacity-70">high-volume spray-and-pray and founder-led manual outreach.</span>
-          </p>
-        </div>
-        
-        <div className="phil-reveal opacity-0 mt-8 md:mt-24">
-          <p className="text-4xl md:text-7xl lg:text-8xl font-sans font-bold tracking-tight max-w-5xl">
-            We focus on: <br/>
-            <span className="font-drama italic text-accent tracking-normal leading-none block md:inline mt-4 md:mt-0">
-              Outbound Systems.
-            </span>
-          </p>
-        </div>
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col gap-16">
+        <h2 className="phil-anim font-sans font-normal text-2xl lg:text-3xl leading-relaxed text-white/50 max-w-3xl">
+          Most investment teams focus on: manual triage, analyst-admin work, and hoping nobody forgets the follow-up.
+        </h2>
+
+        <h3 className="phil-anim font-sans font-bold text-4xl lg:text-5xl leading-tight">
+          We focus on:<br/>
+          <span className="font-drama italic text-6xl lg:text-8xl text-accent mt-4 block">
+            Workflow Systems.
+          </span>
+        </h3>
       </div>
     </section>
   );

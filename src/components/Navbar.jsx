@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 80);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl">
-      <div 
-        className={clsx(
-          "flex items-center justify-between px-6 py-4 rounded-full transition-all duration-500",
-          isScrolled 
-            ? "bg-background/80 backdrop-blur-xl border border-dark/10 shadow-lg" 
-            : "bg-transparent"
+    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 w-full">
+      <nav
+        className={cn(
+          "flex items-center justify-between px-6 py-3 rounded-full transition-all duration-500 w-full max-w-5xl border border-transparent",
+          scrolled 
+            ? "bg-background/80 backdrop-blur-xl text-primary border-border shadow-md" 
+            : "bg-transparent text-white"
         )}
       >
-        <div className={clsx(
-          "text-xl font-bold tracking-tight transition-colors duration-500",
-          isScrolled ? "text-dark" : "text-white"
-        )}>
-          Ekamone
-        </div>
+        <div className="font-sans font-bold text-xl tracking-tight">Ekamone</div>
         
-        <div className={clsx(
-          "hidden md:flex gap-8 text-sm font-medium transition-colors duration-500",
-          isScrolled ? "text-dark/70" : "text-white/70"
-        )}>
-          <a href="#philosophy" className={clsx("link-lift hover:text-accent transition-colors")}>Philosophy</a>
-          <a href="#features" className={clsx("link-lift hover:text-accent transition-colors")}>Systems</a>
-          <a href="#protocol" className={clsx("link-lift hover:text-accent transition-colors")}>Protocol</a>
-          <a href="#testimonials" className={clsx("link-lift hover:text-accent transition-colors")}>Confirmations</a>
+        <div className="hidden md:flex items-center gap-8 font-medium text-sm">
+          <a href="#philosophy" className="hover:-translate-y-[1px] transition-transform">Philosophy</a>
+          <a href="#systems" className="hover:-translate-y-[1px] transition-transform">Systems</a>
+          <a href="#protocol" className="hover:-translate-y-[1px] transition-transform">Protocol</a>
+          <a href="#diagnostics" className="hover:-translate-y-[1px] transition-transform">Diagnostics</a>
+          <a href="#getstarted" className="hover:-translate-y-[1px] transition-transform">Get Started</a>
         </div>
 
-        <a href="https://calendly.com/whybhavya/discovery-call" target="_blank" rel="noopener noreferrer" className="btn-magnetic flex items-center gap-2 bg-accent text-primary px-5 py-2.5 rounded-full text-sm font-bold overflow-hidden relative group">
-          <span className="relative z-10 flex items-center gap-2">
-            Get Started <ArrowRight size={16} />
-          </span>
-          <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"></div>
+        <a 
+          href="#getstarted" 
+          className={cn(
+            "magnetic-btn px-5 py-2 text-sm",
+            scrolled ? "bg-accent text-white" : "bg-white text-primary hover:text-white"
+          )}
+        >
+          Get Started
         </a>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }

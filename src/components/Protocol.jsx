@@ -1,145 +1,131 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { clsx } from 'clsx';
 
-gsap.registerPlugin(ScrollTrigger);
-
-// SVG animations for cards
-function GeometricMotif() {
-  const ref = useRef(null);
-  useEffect(() => {
-    gsap.to(ref.current, { rotation: 360, duration: 20, repeat: -1, ease: 'none' });
-  }, []);
+// SVG Animations based on the prompt's requirements
+function MotifOne() {
   return (
-    <svg ref={ref} viewBox="0 0 100 100" className="w-full h-full opacity-60 text-accent" fill="none" stroke="currentColor" strokeWidth="2">
-      <circle cx="50" cy="50" r="40" strokeDasharray="10 5" />
-      <polygon points="50,15 80,80 20,80" className="opacity-50" />
-      <polygon points="50,85 20,20 80,20" className="opacity-50" />
+    <svg className="w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.3">
+      <circle cx="50" cy="50" r="40" strokeDasharray="4 4" />
+      <polygon points="50,15 85,75 15,75" />
+      <polygon points="50,85 15,25 85,25" />
     </svg>
   );
 }
 
-function ScanningLaser() {
-  const ref = useRef(null);
-  useEffect(() => {
-    gsap.to(ref.current, { y: 100, duration: 2, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-  }, []);
+function MotifTwo() {
   return (
-    <div className="w-full h-full relative border border-primary/20 bg-dark rounded overflow-hidden">
-      <div className="absolute inset-0 grid grid-cols-10 grid-rows-10 opacity-20">
-        {Array.from({length: 100}).map((_, i) => (
-          <div key={i} className="border-[0.5px] border-primary/40"></div>
-        ))}
-      </div>
-      <div ref={ref} className="absolute top-[-50px] w-full h-[50px] bg-gradient-to-b from-transparent to-accent/80 border-b-2 border-accent shadow-[0_5px_15px_rgba(230,59,46,0.6)]"></div>
+    <div className="relative w-full h-full border border-primary/10 overflow-hidden bg-background">
+      {/* Grid Pattern */}
+      <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(to right, rgba(13,13,18,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(13,13,18,0.05) 1px, transparent 1px)', backgroundSize: '10% 10%' }} />
+      {/* Laser Line */}
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-accent blur-[1px] animate-[slideDown_3s_ease-in-out_infinite_alternate] shadow-[0_0_15px_#C9A84C]" />
+      <style>{`@keyframes slideDown { 0% { top: 0%; } 100% { top: 100%; } }`}</style>
     </div>
   );
 }
 
-function PulsingWaveform() {
-  const pathRef = useRef(null);
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(pathRef.current, {
-        strokeDashoffset: 0,
-        duration: 2,
-        repeat: -1,
-        ease: 'power1.inOut',
-        yoyo: true
-      });
-    });
-    return () => ctx.revert();
-  }, []);
+function MotifThree() {
   return (
-    <svg viewBox="0 0 200 100" className="w-full h-full text-accent" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <path 
-        ref={pathRef}
-        d="M10 50 H60 L75 20 L95 80 L115 10 L135 90 L150 50 H190" 
-        strokeDasharray="400" 
-        strokeDashoffset="400"
-      />
+    <svg className="w-full h-full" viewBox="0 0 200 100" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path className="animate-[dash_3s_linear_infinite]" d="M 0 50 L 40 50 L 50 20 L 70 80 L 80 50 L 120 50 L 130 30 L 150 70 L 160 50 L 200 50" strokeDasharray="200" strokeDashoffset="200" />
+      <style>{`@keyframes dash { to { stroke-dashoffset: 0; } }`}</style>
     </svg>
   );
 }
 
-const steps = [
-  {
-    num: "01",
-    title: "Audit Sequences",
-    desc: "We dissect your existing outreach: sequences, targeting, copy, and timing. We find the single leverage point where your pipeline is leaking.",
-    Graphic: GeometricMotif
-  },
-  {
-    num: "02",
-    title: "Deploy Outreach System",
-    desc: "We build and ship an AI-powered outbound system into your workflow. Not a slide deck — a working engine that sends, follows up, and books calls.",
-    Graphic: ScanningLaser
-  },
-  {
-    num: "03",
-    title: "Scale Pipeline",
-    desc: "We measure against booked calls and qualified pipeline. Continuous iteration until your outreach runs without founder-dependency.",
-    Graphic: PulsingWaveform
-  }
-];
+function MotifFour() {
+  return (
+    <div className="w-full h-full flex items-center justify-center bg-primary text-white font-mono text-sm leading-tight p-4 overflow-hidden relative border border-primary/20">
+      <div className="absolute inset-0 flex flex-col items-center justify-center opacity-30">
+        <div className="w-16 h-16 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+        <div className="mt-4 tracking-widest uppercase text-accent">Scaling</div>
+      </div>
+    </div>
+  );
+}
 
 export default function Protocol() {
-  const containerRef = useRef(null);
-  const cardsRef = useRef([]);
+  const container = useRef(null);
+
+  const steps = [
+    { num: '01', title: 'Audit Workflow', copy: 'We rip apart the current process. Where does work come in? Who touches it? What gets delayed? What gets forgotten? What should already be automated but somehow still lives in someone’s inbox?', Component: MotifOne },
+    { num: '02', title: 'Map Logic', copy: 'We map the actual decision flow. What counts as qualified? What gets routed where? When should research happen? When should CRM update? When should outreach trigger? We build around how your team actually works, not how some generic SaaS tool thinks you should work.', Component: MotifTwo },
+    { num: '03', title: 'Deploy System', copy: 'Then we build it. A real working system inside your workflow — not a deck, not a prototype, not a cute AI experiment that breaks the second volume hits.', Component: MotifThree },
+    { num: '04', title: 'Tighten & Scale', copy: 'Once it’s live, we refine the logic, clean edge cases, and make sure the system keeps doing useful work instead of becoming another expensive tab nobody opens.', Component: MotifFour }
+  ];
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      cardsRef.current.forEach((card, i) => {
-        if (i === cardsRef.current.length - 1) return; // skip last card
-
-        ScrollTrigger.create({
-          trigger: card,
-          start: 'top top',
-          pin: true,
-          pinSpacing: false,
-          endTrigger: containerRef.current,
-          end: 'bottom bottom',
-          animation: gsap.to(card, {
-            scale: 0.9 - (cardsRef.current.length - i) * 0.02,
-            opacity: 0.2,
-            filter: 'blur(10px)',
-            ease: "none"
-          }),
-          scrub: true,
+    if (window.innerWidth >= 768) {
+      const ctx = gsap.context(() => {
+        const cards = gsap.utils.toArray('.stack-card');
+        
+        cards.forEach((card, i) => {
+          if (i !== cards.length - 1) { // Skip last
+            gsap.to(card, {
+              scale: 0.9,
+              opacity: 0.5,
+              filter: 'blur(20px)',
+              duration: 1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 40px',
+                end: 'bottom top',
+                scrub: true,
+                pin: true,
+                pinSpacing: false
+              }
+            });
+          } else {
+             ScrollTrigger.create({
+               trigger: card,
+               start: 'top 40px',
+               pin: true,
+               pinSpacing: true,
+             });
+          }
         });
-      });
-    }, containerRef);
-    return () => ctx.revert();
+      }, container);
+      return () => ctx.revert();
+    }
   }, []);
 
   return (
-    <section id="protocol" ref={containerRef} className="relative bg-background pt-24 pb-24 z-20">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-16">
-        <h2 className="font-mono text-sm uppercase tracking-widest text-accent mb-4">The Protocol</h2>
-        <p className="font-sans font-bold text-4xl md:text-5xl max-w-2xl leading-tight text-dark">
-          How we ship your outreach system.
-        </p>
+    <section id="protocol" ref={container} className="bg-primary pb-32">
+      <div className="py-24 px-6 lg:px-24 max-w-7xl mx-auto text-center">
+        <p className="text-sm font-semibold tracking-widest uppercase text-accent mb-4">THE PROTOCOL</p>
+        <h2 className="font-sans font-bold text-4xl md:text-5xl text-white tracking-tight">How we ship your workflow system.</h2>
       </div>
 
-      <div className="flex flex-col relative w-full items-center justify-start flex-1 min-h-[300vh]">
-        {steps.map((step, i) => (
+      <div className="w-full relative px-6 max-w-6xl mx-auto pb-[20vh]">
+        {steps.map((step, idx) => (
           <div 
-            key={i} 
-            ref={el => cardsRef.current[i] = el}
-            className="card-stack top-0 w-full h-[100dvh] flex items-center justify-center sticky px-6 md:px-12 lg:px-24 py-12"
+            key={idx} 
+            className="stack-card h-[75vh] md:h-[60vh] lg:h-[70vh] w-full flex items-center justify-center sticky top-20 bg-background rounded-[3rem] shadow-2xl overflow-hidden border border-border mt-8 p-10 lg:p-16"
           >
-            <div className="w-full max-w-5xl h-[80vh] bg-primary text-white rounded-[2rem] border border-white/10 p-8 md:p-16 flex flex-col md:flex-row shadow-[0_-10px_40px_rgba(0,0,0,0.3)] gap-12 md:gap-24 items-center justify-between">
+            <div className="flex flex-col md:flex-row gap-12 w-full h-full">
               
-              <div className="flex-1 flex flex-col justify-center max-w-lg relative z-10 w-full">
-                <div className="font-mono text-5xl md:text-7xl opacity-20 font-bold mb-6 block border-b border-white/20 pb-4">{step.num}</div>
-                <h3 className="font-sans text-4xl md:text-6xl font-bold tracking-tight mb-6">{step.title}</h3>
-                <p className="font-mono text-lg text-white/60 leading-relaxed">{step.desc}</p>
+              {/* Text Side */}
+              <div className="flex-1 flex flex-col justify-center order-2 md:order-1">
+                <div className="text-accent font-mono text-xl sm:text-2xl font-bold mb-6 tracking-widest">
+                  STEP _{step.num}
+                </div>
+                <h3 className="text-primary font-sans font-bold text-3xl md:text-5xl mb-6 leading-tight">
+                  {step.title}
+                </h3>
+                <p className="text-textDark font-medium text-lg leading-relaxed max-w-xl">
+                  {step.copy}
+                </p>
               </div>
 
-              <div className="hidden md:flex flex-1 w-full max-w-md aspect-square rounded-2xl bg-white/5 border border-white/5 p-12 items-center justify-center">
-                <step.Graphic />
+              {/* Graphic/Animation Side */}
+              <div className="w-full md:w-[40%] flex items-center justify-center order-1 md:order-2">
+                <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl bg-white shadow-inner flex items-center justify-center p-6 border border-border text-primary/30">
+                  <step.Component />
+                </div>
               </div>
+
             </div>
           </div>
         ))}

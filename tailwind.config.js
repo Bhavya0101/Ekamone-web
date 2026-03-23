@@ -1,3 +1,5 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,15 +9,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#0F0E0C', // Warm Rich Black (Espresso)
-        accent: '#C9A84C',  // Champagne Gold
-        background: '#FAF8F5', // Ivory
-        dark: '#2A2A35',    // Slate
+        background: '#FAF8F5',
+        primary: '#0D0D12',
+        accent: '#C9A84C',
+        textDark: '#2A2A35',
+        card: '#FAF8F5',
+        border: 'rgba(13, 13, 18, 0.1)',
       },
       fontFamily: {
-        sans: ['"Inter"', 'sans-serif'],
-        drama: ['"Playfair Display"', 'serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        drama: ['Playfair Display', ...defaultTheme.fontFamily.serif],
+        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
       },
     },
   },

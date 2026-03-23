@@ -1,49 +1,50 @@
-import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white pt-24 pb-12 px-6 md:px-12 lg:px-24 rounded-t-[4rem] z-30 relative mt-[-100px] overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col justify-between h-full gap-24">
-        
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-6">
-          <div className="col-span-1 md:col-span-6 flex flex-col">
-            <h2 className="text-4xl md:text-6xl font-sans font-bold tracking-tight mb-6">Ekamone</h2>
-            <p className="font-mono text-white/50 max-w-sm">
-              AI-powered outbound systems for boutique recruiting agencies. We ship systems, not slide decks. 
+    <footer className="bg-[#08080B] text-white/70 py-16 px-6 lg:px-24">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 border-b border-white/10 pb-16">
+          
+          <div className="col-span-1 lg:col-span-5 flex flex-col gap-6">
+            <span className="font-sans font-bold text-2xl text-white tracking-tight">Ekamone</span>
+            <p className="font-medium text-sm leading-loose max-w-xs">
+              AI-powered workflow systems for VC, PE, family offices, and home offices.
+              <br/><br/>
+              We ship systems, not slide decks.
             </p>
           </div>
-          
-          <div className="col-span-1 md:col-span-3">
-            <h4 className="font-sans font-bold text-lg mb-6 text-white/80">Navigation</h4>
-            <ul className="flex flex-col gap-4 font-mono text-white/50 text-sm">
-              <li><a href="#philosophy" className="link-lift hover:text-accent group relative block"><span className="absolute left-[-15px] opacity-0 group-hover:opacity-100 transition-opacity text-accent">›</span> Philosophy</a></li>
-              <li><a href="#features" className="link-lift hover:text-accent transition-colors">Systems</a></li>
-              <li><a href="#protocol" className="link-lift hover:text-accent transition-colors">The Protocol</a></li>
-              <li><a href="#testimonials" className="link-lift hover:text-accent transition-colors">Confirmations</a></li>
-            </ul>
-          </div>
-          
-          <div className="col-span-1 md:col-span-3">
-            <h4 className="font-sans font-bold text-lg mb-6 text-white/80">Legal</h4>
-            <ul className="flex flex-col gap-4 font-mono text-white/50 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-            </ul>
-          </div>
-        </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-white/10">
-          <p className="font-mono text-xs text-white/30">© {new Date().getFullYear()} Ekamone. All rights reserved.</p>
-          
-          <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
-            <div className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+          <div className="col-span-1 lg:col-span-3 flex flex-col gap-4">
+            <h4 className="font-semibold text-white tracking-widest text-xs uppercase mb-2">Navigation</h4>
+            <a href="#philosophy" className="text-sm hover:text-white transition-colors">Philosophy</a>
+            <a href="#systems" className="text-sm hover:text-white transition-colors">Systems</a>
+            <a href="#protocol" className="text-sm hover:text-white transition-colors">The Protocol</a>
+            <a href="#diagnostics" className="text-sm hover:text-white transition-colors">Diagnostics</a>
+            <a href="#getstarted" className="text-sm hover:text-white transition-colors">Get Started</a>
+          </div>
+
+          <div className="col-span-1 lg:col-span-4 flex flex-col gap-4">
+            <h4 className="font-semibold text-white tracking-widest text-xs uppercase mb-2">System</h4>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+              <span className="font-mono text-xs text-white uppercase tracking-widest">SYSTEM STATUS: OPERATIONAL</span>
             </div>
-            <span className="font-mono text-xs text-white/70 tracking-widest uppercase">System Operational</span>
+            <a href="mailto:hello@ekamone.com" className="group mt-6 inline-flex items-center gap-2 text-sm text-white border-b border-white/20 pb-1 w-fit hover:border-white transition-colors">
+              Contact Command
+              <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </a>
           </div>
+
         </div>
 
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs font-mono text-white/40">
+          <p>© {new Date().getFullYear()} Ekamone. All rights reserved.</p>
+          <div className="flex gap-6 mt-4 md:mt-0">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          </div>
+        </div>
       </div>
     </footer>
   );

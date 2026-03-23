@@ -1,246 +1,226 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Terminal, Database, Activity, MousePointer2 } from 'lucide-react';
-import { clsx } from 'clsx';
+import { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 
-// --- Card 1: Diagnostic Shuffler --- //
-function DiagnosticShuffler() {
-  const [cards, setCards] = useState([
-    { id: 1, title: 'Step 1: Audit', value: 'Analyzing Sequences' },
-    { id: 2, title: 'Step 2: Map', value: 'Identifying Leverage' },
-    { id: 3, title: 'Step 3: Solve', value: 'System Deployment' }
-  ]);
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const cycle = setInterval(() => {
-      setCards(prev => {
-        const arr = [...prev];
-        arr.unshift(arr.pop());
-        return arr;
-      });
-    }, 3000);
-    return () => clearInterval(cycle);
-  }, []);
-
-  useEffect(() => {
-    // spring bounce transition
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.shuffler-card', 
-        { y: -20, scale: 0.95 }, 
-        { y: 0, scale: 1, duration: 0.6, stagger: 0.05, ease: 'back.out(1.5)' }
-      );
-    }, containerRef);
-    return () => ctx.revert();
-  }, [cards]);
-
-  return (
-    <div className="bg-primary/5 border border-dark/10 rounded-[2rem] p-8 shadow-sm flex flex-col h-[400px]">
-      <div className="mb-6">
-        <h3 className="font-sans font-bold text-xl mb-2">Leverage<br/>Diagnostics</h3>
-        <p className="font-mono text-sm text-dark/70">Identifying points of failure in outreach</p>
-      </div>
-      
-      <div ref={containerRef} className="relative flex-1 flex flex-col items-center justify-center mt-4">
-        {cards.map((c, i) => (
-          <div 
-            key={c.id}
-            className={clsx(
-              "shuffler-card absolute w-full p-4 rounded-xl border transition-all duration-700",
-              i === 0 ? "bg-primary text-white z-30 translate-y-0 scale-100 shadow-xl border-primary" :
-              i === 1 ? "bg-white text-dark z-20 -translate-y-4 scale-95 shadow-md border-dark/5 opacity-80" :
-              "bg-background/80 text-dark z-10 -translate-y-8 scale-90 border-dark/5 opacity-40"
-            )}
-            style={{ top: '40%' }}
-          >
-            <div className="flex justify-between items-center mb-1">
-              <span className="font-mono text-xs uppercase opacity-70">{c.title}</span>
-              <Activity size={14} className={i === 0 ? "text-accent" : ""} />
-            </div>
-            <div className="font-sans font-semibold text-lg">{c.value}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// --- Card 2: Telemetry Typewriter --- //
-function TelemetryTypewriter() {
-  const [text, setText] = useState('');
-  const fullText = "outreach_init()\\n> Scanning sequences...\\n> Inefficiency: manual follow-ups\\n> Deploying AI outreach engine...\\n> Status: BOOKING CALLS.\\n_";
-  
-  useEffect(() => {
-    let current = '';
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i < fullText.length) {
-        current += fullText.charAt(i);
-        setText(current);
-        i++;
-      } else {
-        // restart after a pause
-        setTimeout(() => { i = 0; current = ''; setText(''); }, 3000);
-      }
-    }, 50);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="bg-primary/5 border border-dark/10 rounded-[2rem] p-8 shadow-sm flex flex-col h-[400px]">
-      <div className="mb-6 flex justify-between items-start">
-        <div>
-          <h3 className="font-sans font-bold text-xl mb-2">Live Outreach<br/>Feed</h3>
-          <p className="font-mono text-sm text-dark/70 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-            Live Feed
-          </p>
-        </div>
-        <Terminal className="text-dark/40" />
-      </div>
-      <div className="flex-1 bg-primary text-white rounded-xl p-6 overflow-hidden">
-        <pre className="font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap break-all">
-          {text.split('\\n').map((line, idx) => (
-            <span key={idx} className="block mb-2">
-              {line.includes('BOOKING CALLS') ? <span className="text-accent">{line}</span> : line}
-            </span>
-          ))}
-        </pre>
-      </div>
-    </div>
-  );
-}
-
-// --- Card 3: Cursor Protocol Scheduler --- //
-function CursorProtocolScheduler() {
-  const containerRef = useRef(null);
-  const [activeDay, setActiveDay] = useState(null);
-  const days = ['S','M','T','W','T','F','S'];
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ repeat: -1 });
-      
-      // Reset state
-      tl.call(() => setActiveDay(null));
-      
-      // Move to Wednesday (index 3)
-      tl.to('.mouse-cursor', {
-        x: '140%', y: '120%', 
-        duration: 1, 
-        ease: 'power2.inOut',
-        delay: 0.5
-      });
-      
-      // Click simulation
-      tl.to('.mouse-cursor', { scale: 0.8, duration: 0.1 });
-      tl.call(() => setActiveDay(3));
-      tl.to('.mouse-cursor', { scale: 1, duration: 0.1 });
-      
-      // Move to Save button
-      tl.to('.mouse-cursor', {
-        x: '250%', y: '250%', 
-        duration: 1, 
-        ease: 'power2.inOut',
-        delay: 0.5
-      });
-      tl.to('.mouse-cursor', { scale: 0.8, duration: 0.1 });
-      tl.to('.save-btn', { scale: 0.95, duration: 0.1 });
-      tl.to('.mouse-cursor', { scale: 1, duration: 0.1 });
-      tl.to('.save-btn', { scale: 1, duration: 0.1 });
-      
-      // Reset position
-      tl.to('.mouse-cursor', {
-        x: '0%', y: '0%', 
-        duration: 1, 
-        opacity: 0,
-        ease: 'power1.inOut'
-      });
-      tl.set('.mouse-cursor', { opacity: 1 });
-
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <div className="bg-primary/5 border border-dark/10 rounded-[2rem] p-8 shadow-sm flex flex-col h-[400px]">
-      <div className="mb-6 flex justify-between items-start">
-        <div>
-          <h3 className="font-sans font-bold text-xl mb-2">Pipeline<br/>Deployment</h3>
-          <p className="font-mono text-sm text-dark/70">Founder-led to system-led</p>
-        </div>
-        <Database className="text-dark/40" />
-      </div>
-
-      <div ref={containerRef} className="flex-1 bg-white border border-dark/10 rounded-xl p-6 relative overflow-hidden flex flex-col justify-center">
-        <div className="grid grid-cols-7 gap-1 mb-6 relative">
-          {days.map((d, i) => (
-            <div 
-              key={i} 
-              className={clsx(
-                "aspect-square rounded text-center text-xs font-mono flex items-center justify-center transition-colors duration-300",
-                activeDay === i ? "bg-accent text-primary" : "bg-dark/5 text-dark/50"
-              )}
-            >
-              {d}
-            </div>
-          ))}
-          <div className="mouse-cursor absolute top-0 left-0 w-6 h-6 z-10 pointer-events-none drop-shadow-md text-dark">
-            <svg viewBox="0 0 24 24" fill="currentColor" stroke="white" strokeWidth="1"><path d="M4 2l6.11 20 3.35-7.14L20 12.83z"/></svg>
-          </div>
-        </div>
-        
-        <div className="flex justify-between items-center bg-primary/20 p-3 rounded-lg">
-          <span className="font-mono text-xs font-bold text-dark/60">STATUS: CALLS BOOKED</span>
-          <div className="save-btn bg-primary text-white text-[10px] px-3 py-1.5 rounded uppercase font-bold tracking-wider">Scale</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Features() {
-  const sectionRef = useRef(null);
+  const container = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.feature-stagger',
-        { y: 50, opacity: 0 },
+      gsap.fromTo('.feature-anim', 
+        { y: 50, opacity: 0 }, 
         { 
-          y: 0, opacity: 1, 
-          duration: 0.8, 
-          stagger: 0.15, 
-          ease: 'power3.out',
+          y: 0, opacity: 1, duration: 1, 
+          stagger: 0.15, ease: 'power3.out',
           scrollTrigger: {
-            trigger: sectionRef.current,
+            trigger: container.current,
             start: 'top 70%',
           }
         }
       );
-    }, sectionRef);
+    }, container);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="features" ref={sectionRef} className="py-32 px-6 md:px-12 lg:px-24 bg-background z-20 relative">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16 feature-stagger">
-          <h2 className="font-mono text-sm uppercase tracking-widest text-accent mb-4">Functional Artifacts</h2>
-          <p className="font-sans font-bold text-4xl md:text-5xl max-w-2xl leading-tight text-dark">
-            Your outbound, rebuilt from <br/>
-            <span className="font-drama italic text-dark">first principles.</span>
-          </p>
+    <section ref={container} id="systems" className="py-24 px-6 lg:px-24 bg-background max-w-7xl mx-auto">
+      <div className="mb-20">
+        <p className="feature-anim text-sm font-semibold tracking-widest uppercase text-textDark/50 mb-4">
+          FUNCTIONAL ARTIFACTS
+        </p>
+        <h2 className="feature-anim font-sans font-bold text-4xl text-primary md:text-5xl tracking-tight max-w-xl">
+          Your internal workflow, rebuilt from first principles.
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-primary">
+        
+        {/* CARD 1 - Deal Flow Diagnostics (Shuffler) */}
+        <div className="feature-anim feature-card flex flex-col justify-between h-[450px]">
+          <div className="flex-1">
+            <DiagnosticShuffler />
+          </div>
+          <div className="mt-8">
+            <h3 className="font-sans font-bold text-xl mb-3 leading-tight">Deal Flow<br/>Diagnostics</h3>
+            <p className="text-textDark font-medium text-sm leading-relaxed mb-4">
+              Find where good opportunities die, where analysts waste time, and where your process quietly turns into inbox soup.
+            </p>
+            <div className="flex flex-wrap gap-2 text-xs font-mono">
+              <span className="bg-primary/5 px-2 py-1 rounded">Inbox Triage</span>
+              <span className="bg-primary/5 px-2 py-1 rounded">Fit Scoring</span>
+              <span className="bg-primary/5 px-2 py-1 rounded">Routing Logic</span>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 feature-stagger">
-          <DiagnosticShuffler />
-          <TelemetryTypewriter />
-          <CursorProtocolScheduler />
+        {/* CARD 2 - Live Investment Feed (Typewriter) */}
+        <div className="feature-anim feature-card flex flex-col justify-between h-[450px]">
+          <div className="flex-1">
+            <TelemetryTypewriter />
+          </div>
+          <div className="mt-8">
+            <h3 className="font-sans font-bold text-xl mb-3 leading-tight">Live Investment<br/>Feed</h3>
+            <p className="text-textDark font-medium text-sm leading-relaxed">
+              Real-time intake, evaluation, research, and next-step triggers — without someone manually playing traffic cop all day.
+            </p>
+          </div>
         </div>
+
+        {/* CARD 3 - Pipeline Deployment (Scheduler/Cursor) */}
+        <div className="feature-anim feature-card flex flex-col justify-between h-[450px]">
+          <div className="flex-1">
+            <CursorProtocolScheduler />
+          </div>
+          <div className="mt-8">
+            <h3 className="font-sans font-bold text-xl mb-3 leading-tight">Pipeline<br/>Deployment</h3>
+            <p className="text-textDark font-medium text-sm leading-relaxed mb-4">
+              From founder email to qualified meeting — with the right person, the right context, and way less chaos.
+            </p>
+            <div className="text-xs font-mono font-bold text-accent tracking-widest uppercase">
+              STATUS: GOOD DEALS MOVING
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
+  );
+}
+
+// ----------------- MICRO-UI COMPONENTS -----------------
+
+function DiagnosticShuffler() {
+  const [cards, setCards] = useState([
+    { id: 1, label: 'founder_deck.pdf', status: 'Scanned' },
+    { id: 2, label: 'inbox_triage()', status: 'Active' },
+    { id: 3, label: 'deal_momentum.log', status: 'High Fit' },
+  ]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCards(prev => {
+        const newArr = [...prev];
+        const last = newArr.pop();
+        newArr.unshift(last);
+        return newArr;
+      });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative h-full w-full flex items-center justify-center pt-10">
+      {cards.map((card, idx) => {
+        const isTop = idx === 0;
+        return (
+          <div 
+            key={card.id}
+            className="absolute rounded-xl border border-primary/10 bg-white p-4 w-5/6 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] flex items-center justify-between"
+            style={{
+              transform: `translateY(${idx * 20}px) scale(${1 - idx * 0.05})`,
+              zIndex: 10 - idx,
+              opacity: 1 - idx * 0.2
+            }}
+          >
+            <div className="flex items-center gap-3 w-full">
+              <div className={`w-2 h-2 rounded-full shrink-0 ${isTop ? 'bg-accent' : 'bg-primary/20'}`} />
+              <span className="font-mono text-[10px] sm:text-xs truncate">{card.label}</span>
+            </div>
+            {isTop && <span className="text-[10px] sm:text-xs font-semibold text-accent whitespace-nowrap ml-2">{card.status}</span>}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function TelemetryTypewriter() {
+  const fullText = "dealflow_init()\n> scanning inbound pitch decks...\n> evaluating thesis match...\n> founder profile found\n> CRM updated\n> scheduling trigger armed";
+  const [displayedText, setDisplayedText] = useState("");
+  const [cursorVisible, setCursorVisible] = useState(true);
+
+  useEffect(() => {
+    let i = 0;
+    setDisplayedText("");
+    
+    const typeInterval = setInterval(() => {
+      if (i < fullText.length) {
+        setDisplayedText(prev => prev + fullText.charAt(i));
+        i++;
+      } else {
+        clearInterval(typeInterval);
+        setTimeout(() => { i=0; setDisplayedText(""); }, 4000);
+      }
+    }, 40);
+
+    const blinkInterval = setInterval(() => setCursorVisible(v => !v), 500);
+
+    return () => { clearInterval(typeInterval); clearInterval(blinkInterval); };
+  }, []);
+
+  return (
+    <div className="bg-primary text-white rounded-xl p-6 h-full font-mono text-[10px] sm:text-xs flex flex-col shadow-inner relative overflow-hidden">
+      <div className="flex items-center gap-2 mb-4 text-white/50 border-b border-white/10 pb-2">
+        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shrink-0" />
+        <span className="tracking-widest">LIVE FEED</span>
+      </div>
+      <div className="flex-1 whitespace-pre-wrap leading-loose text-white/80 overflow-hidden">
+        {displayedText}
+        <span className="text-accent" style={{ opacity: cursorVisible ? 1 : 0 }}>█</span>
+      </div>
+    </div>
+  );
+}
+
+function CursorProtocolScheduler() {
+  const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const gridContainer = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+      tl.to('.fake-cursor', { x: 50, y: 30, duration: 1, ease: 'power2.inOut' })
+        .to('.fake-cursor', { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 })
+        .to('.day-cell-3', { backgroundColor: '#C9A84C', color: '#fff', duration: 0.2 })
+        .to('.fake-cursor', { x: 140, y: 90, duration: 1, ease: 'power2.inOut', delay: 0.5 })
+        .to('.fake-cursor', { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 })
+        .to('.fake-cursor', { opacity: 0, duration: 0.3, delay: 0.5 })
+        .to('.day-cell-3', { backgroundColor: 'transparent', color: '#0D0D12', duration: 0.1, delay: 0.2 }) // reset
+        .set('.fake-cursor', { x: 0, y: 0, opacity: 1 });
+    }, gridContainer);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div ref={gridContainer} className="relative h-full w-full bg-white rounded-xl p-4 shadow-sm border border-primary/5 flex flex-col justify-center overflow-hidden">
+      <div className="flex justify-between items-center mb-6">
+        <span className="font-sans font-semibold text-xs tracking-wide">Automated Intake</span>
+        <div className="bg-primary text-white font-mono text-[8px] sm:text-[10px] px-2 py-1 rounded-full uppercase tracking-widest shrink-0">
+          Active
+        </div>
+      </div>
+
+      <div className="flex gap-1 sm:gap-2 justify-between mb-8">
+        {days.map((d, i) => (
+          <div key={i} className={`day-cell-${i} w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-mono text-[10px] sm:text-xs border border-primary/10 transition-colors`}>
+            {d}
+          </div>
+        ))}
+      </div>
+
+      <div className="flex justify-end pr-2">
+        <div className="bg-primary/5 px-4 py-2 border border-primary/10 rounded-md text-[10px] sm:text-xs font-semibold text-primary/40">
+          Deploy Workflow
+        </div>
+      </div>
+
+      <svg 
+        className="fake-cursor absolute top-8 left-8 w-6 h-6 drop-shadow-md z-10" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M4.5 3L21 12.5L13.5 15L11 22.5L4.5 3Z" fill="#2A2A35" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
+      </svg>
+    </div>
   );
 }
