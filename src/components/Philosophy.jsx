@@ -34,7 +34,7 @@ export default function Philosophy() {
 
       <div className="relative z-10 max-w-5xl mx-auto flex flex-col gap-16">
         <h2 className="phil-anim font-sans font-normal text-2xl lg:text-3xl leading-relaxed text-white/50 max-w-3xl">
-          Most investment teams focus on: manual triage, analyst-admin work, and hoping nobody forgets the follow-up.
+          Most investment teams focus on: manual triage, analyst admin work, and hoping nobody forgets the follow up.
         </h2>
 
         <h3 className="phil-anim font-sans font-bold text-4xl lg:text-5xl leading-tight">

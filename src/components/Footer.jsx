@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Footer() {
   return (
@@ -6,8 +7,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 border-b border-white/10 pb-16">
           
-          <div className="col-span-1 lg:col-span-5 flex flex-col gap-6">
-            <span className="font-sans font-bold text-2xl text-white tracking-tight">Ekamone</span>
+          <div className="col-span-1 lg:col-span-5 flex flex-col gap-6 items-start">
+            <Logo className="w-12 h-12" />
             <p className="font-medium text-sm leading-loose max-w-xs">
               AI-powered workflow systems for VC, PE, family offices, and home offices.
               <br/><br/>
@@ -30,7 +31,7 @@ export default function Footer() {
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
               <span className="font-mono text-xs text-white uppercase tracking-widest">SYSTEM STATUS: OPERATIONAL</span>
             </div>
-            <a href="mailto:hello@ekamone.com" className="group mt-6 inline-flex items-center gap-2 text-sm text-white border-b border-white/20 pb-1 w-fit hover:border-white transition-colors">
+            <a href="mailto:bhavya@ekamone.com" className="group mt-6 inline-flex items-center gap-2 text-sm text-white border-b border-white/20 pb-1 w-fit hover:border-white transition-colors">
               Contact Command
               <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>

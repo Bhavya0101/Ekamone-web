@@ -33,9 +33,9 @@ export default function Engagement() {
           Book a strategy call and we’ll look at your workflow, show you where time is leaking, and tell you what should actually be automated.
         </p>
         
-        <button className="cta-anim magnetic-btn bg-white text-primary px-10 py-5 text-xl font-bold tracking-wide hover:bg-accent hover:text-white transition-colors duration-300">
-          Initialize Strategy
-        </button>
+        <a href="https://calendly.com/whybhavya/discovery-call" target="_blank" rel="noopener noreferrer" className="cta-anim magnetic-btn bg-white text-primary px-10 py-5 text-xl font-bold tracking-wide hover:bg-accent hover:text-white transition-colors duration-300">
+          Book a Workflow Teardown
+        </a>
       </div>
     </section>
   );

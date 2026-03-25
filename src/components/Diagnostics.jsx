@@ -6,9 +6,7 @@ export default function Diagnostics() {
 
   const stats = [
     { num: '20+ hrs', line: 'a week lost to manual review, routing, note-taking, follow-ups, and CRM housekeeping on lean teams', sub: 'Smart people doing clerical work is not a strategy.' },
-    { num: 'Too many', line: 'good opportunities get slowed down by human bottlenecks that shouldn’t exist in the first place', sub: 'If the process depends on someone “getting to it later,” that’s not process. That’s vibes.' },
-    { num: '0', line: 'points awarded for making analysts manually summarize decks all day', sub: 'That’s not edge. That’s expensive admin work wearing a blazer.' },
-    { num: 'More signal', line: 'when the system gathers context before your team burns time on the wrong opportunities', sub: 'Better routing. Better prep. Better conversations. Less sludge.' }
+    { num: 'Too many', line: 'good opportunities get slowed down by human bottlenecks that shouldn’t exist in the first place', sub: 'Better routing. Better prep. Better conversations. Less sludge.' }
   ];
 
   useEffect(() => {
@@ -45,7 +43,7 @@ export default function Diagnostics() {
               {stat.line}
             </p>
             <p className="text-sm text-textDark/60 font-mono mt-2 pt-4 border-t border-border">
-              > {stat.sub}
+              &gt; {stat.sub}
             </p>
           </div>
         ))}

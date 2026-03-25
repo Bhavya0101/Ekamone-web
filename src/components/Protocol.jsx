@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // SVG Animations based on the prompt's requirements
 function MotifOne() {
   return (
-    <svg className="w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.3">
+    <svg className="w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 100 100" fill="none" stroke="#C9A84C" strokeWidth="1" strokeOpacity="0.8">
       <circle cx="50" cy="50" r="40" strokeDasharray="4 4" />
       <polygon points="50,15 85,75 15,75" />
       <polygon points="50,85 15,25 85,25" />
@@ -36,10 +36,10 @@ function MotifThree() {
 
 function MotifFour() {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-primary text-white font-mono text-sm leading-tight p-4 overflow-hidden relative border border-primary/20">
-      <div className="absolute inset-0 flex flex-col items-center justify-center opacity-30">
-        <div className="w-16 h-16 border-2 border-accent border-t-transparent rounded-full animate-spin" />
-        <div className="mt-4 tracking-widest uppercase text-accent">Scaling</div>
+    <div className="w-full h-full flex items-center justify-center font-mono text-sm leading-tight relative">
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <div className="w-16 h-16 border-2 border-accent border-t-transparent rounded-full animate-spin opacity-80" />
+        <div className="mt-4 tracking-widest uppercase text-accent font-bold">Scaling</div>
       </div>
     </div>
   );
@@ -51,7 +51,7 @@ export default function Protocol() {
   const steps = [
     { num: '01', title: 'Audit Workflow', copy: 'We rip apart the current process. Where does work come in? Who touches it? What gets delayed? What gets forgotten? What should already be automated but somehow still lives in someone’s inbox?', Component: MotifOne },
     { num: '02', title: 'Map Logic', copy: 'We map the actual decision flow. What counts as qualified? What gets routed where? When should research happen? When should CRM update? When should outreach trigger? We build around how your team actually works, not how some generic SaaS tool thinks you should work.', Component: MotifTwo },
-    { num: '03', title: 'Deploy System', copy: 'Then we build it. A real working system inside your workflow — not a deck, not a prototype, not a cute AI experiment that breaks the second volume hits.', Component: MotifThree },
+    { num: '03', title: 'Deploy System', copy: 'Then we build it. A real working system inside your workflow, not a deck, not a prototype, not a cute AI demo that falls apart under real volume.', Component: MotifThree },
     { num: '04', title: 'Tighten & Scale', copy: 'Once it’s live, we refine the logic, clean edge cases, and make sure the system keeps doing useful work instead of becoming another expensive tab nobody opens.', Component: MotifFour }
   ];
 

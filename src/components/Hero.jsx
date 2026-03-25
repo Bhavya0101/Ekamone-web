@@ -84,17 +84,17 @@ export default function Hero() {
         </h1>
 
         <p className="hero-anim text-xl md:text-2xl font-sans font-semibold mb-6 text-white max-w-2xl">
-          AI-powered workflow systems for capital teams.
+          AI powered workflow systems for capital teams.
         </p>
 
         <p className="hero-anim max-w-2xl text-lg font-sans mb-12 text-white/70 leading-relaxed font-light">
-          From pitch deck triage to founder research, CRM updates, routing, follow-ups, and meeting booking — we build the stuff your analysts should not be doing by hand.
+          From pitch deck triage to founder research, CRM updates, routing, follow ups, and meeting booking. We automate the work your analysts should not be doing by hand.
         </p>
 
         <div className="hero-anim flex flex-col sm:flex-row items-center gap-6">
-          <button className="magnetic-btn bg-accent text-white px-8 py-4 w-full sm:w-auto text-lg font-medium hover:bg-white hover:text-primary transition-colors">
-            Initialize Strategy
-          </button>
+          <a href="https://calendly.com/whybhavya/discovery-call" target="_blank" rel="noopener noreferrer" className="magnetic-btn bg-accent text-white px-8 py-4 w-full sm:w-auto text-center text-lg font-medium hover:bg-white hover:text-primary transition-colors">
+            Book a Workflow Teardown
+          </a>
         </div>
       </div>
     </section>

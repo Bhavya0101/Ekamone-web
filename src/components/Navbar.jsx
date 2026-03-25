@@ -38,13 +38,13 @@ export default function Navbar() {
         </div>
 
         <a 
-          href="#getstarted" 
+          href="https://calendly.com/whybhavya/discovery-call" target="_blank" rel="noopener noreferrer" 
           className={cn(
             "magnetic-btn px-5 py-2 text-sm",
             scrolled ? "bg-accent text-white" : "bg-white text-primary hover:text-white"
           )}
         >
-          Get Started
+          Book a Workflow Teardown
         </a>
       </nav>
     </div>

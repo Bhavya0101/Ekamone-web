@@ -28,14 +28,14 @@ export default function Features() {
           FUNCTIONAL ARTIFACTS
         </p>
         <h2 className="feature-anim font-sans font-bold text-4xl text-primary md:text-5xl tracking-tight max-w-xl">
-          Your internal workflow, rebuilt from first principles.
+          Your internal workflow, rebuilt so it stops leaking time.
         </h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-primary">
         
         {/* CARD 1 - Deal Flow Diagnostics (Shuffler) */}
-        <div className="feature-anim feature-card flex flex-col justify-between h-[450px]">
+        <div className="feature-anim feature-card flex flex-col justify-between min-h-[400px]">
           <div className="flex-1">
             <DiagnosticShuffler />
           </div>
@@ -53,30 +53,33 @@ export default function Features() {
         </div>
 
         {/* CARD 2 - Live Investment Feed (Typewriter) */}
-        <div className="feature-anim feature-card flex flex-col justify-between h-[450px]">
+        <div className="feature-anim feature-card flex flex-col justify-between min-h-[400px]">
           <div className="flex-1">
             <TelemetryTypewriter />
           </div>
           <div className="mt-8">
             <h3 className="font-sans font-bold text-xl mb-3 leading-tight">Live Investment<br/>Feed</h3>
             <p className="text-textDark font-medium text-sm leading-relaxed">
-              Real-time intake, evaluation, research, and next-step triggers — without someone manually playing traffic cop all day.
+              Real time intake, evaluation, research, and next step triggers without someone manually playing traffic cop all day.
             </p>
           </div>
         </div>
 
         {/* CARD 3 - Pipeline Deployment (Scheduler/Cursor) */}
-        <div className="feature-anim feature-card flex flex-col justify-between h-[450px]">
+        <div className="feature-anim feature-card flex flex-col justify-between min-h-[400px] pb-6">
           <div className="flex-1">
             <CursorProtocolScheduler />
           </div>
           <div className="mt-8">
             <h3 className="font-sans font-bold text-xl mb-3 leading-tight">Pipeline<br/>Deployment</h3>
             <p className="text-textDark font-medium text-sm leading-relaxed mb-4">
-              From founder email to qualified meeting — with the right person, the right context, and way less chaos.
+              From founder email to qualified meeting, with the right person, the right context, and way less chaos.
             </p>
-            <div className="text-xs font-mono font-bold text-accent tracking-widest uppercase">
-              STATUS: GOOD DEALS MOVING
+            <div className="flex items-center gap-2 mt-auto pt-6">
+              <div className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse shadow-[0_0_8px_rgba(201,168,76,0.6)]" />
+              <span className="text-[10px] font-mono tracking-widest font-semibold uppercase text-accent">
+                STATUS: GOOD DEALS MOVING
+              </span>
             </div>
           </div>
         </div>
@@ -90,9 +93,9 @@ export default function Features() {
 
 function DiagnosticShuffler() {
   const [cards, setCards] = useState([
-    { id: 1, label: 'founder_deck.pdf', status: 'Scanned' },
-    { id: 2, label: 'inbox_triage()', status: 'Active' },
-    { id: 3, label: 'deal_momentum.log', status: 'High Fit' },
+    { id: 1, label: 'founder.pdf', status: 'Scanned' },
+    { id: 2, label: 'triage()', status: 'Active' },
+    { id: 3, label: 'momentum.log', status: 'High Fit' },
   ]);
 
   useEffect(() => {
@@ -108,7 +111,7 @@ function DiagnosticShuffler() {
   }, []);
 
   return (
-    <div className="relative h-full w-full flex items-center justify-center pt-10">
+    <div className="relative h-full w-full flex items-center justify-center pb-12">
       {cards.map((card, idx) => {
         const isTop = idx === 0;
         return (
@@ -134,23 +137,29 @@ function DiagnosticShuffler() {
 }
 
 function TelemetryTypewriter() {
-  const fullText = "dealflow_init()\n> scanning inbound pitch decks...\n> evaluating thesis match...\n> founder profile found\n> CRM updated\n> scheduling trigger armed";
+  const fullText = "deal flow initialized\n> scanning inbound pitch decks...\n> evaluating thesis match...\n> founder profile found\n> CRM updated\n> scheduling trigger armed";
   const [displayedText, setDisplayedText] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
 
   useEffect(() => {
     let i = 0;
-    setDisplayedText("");
+    let typeInterval;
     
-    const typeInterval = setInterval(() => {
-      if (i < fullText.length) {
-        setDisplayedText(prev => prev + fullText.charAt(i));
-        i++;
-      } else {
-        clearInterval(typeInterval);
-        setTimeout(() => { i=0; setDisplayedText(""); }, 4000);
-      }
-    }, 40);
+    const startTyping = () => {
+      setDisplayedText("");
+      i = 0;
+      typeInterval = setInterval(() => {
+        if (i < fullText.length) {
+          setDisplayedText(prev => prev + fullText.charAt(i));
+          i++;
+        } else {
+          clearInterval(typeInterval);
+          setTimeout(startTyping, 4000);
+        }
+      }, 40);
+    };
+
+    startTyping();
 
     const blinkInterval = setInterval(() => setCursorVisible(v => !v), 500);
 
